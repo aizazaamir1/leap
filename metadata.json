@@ -1,0 +1,8 @@
+
+{
+  "name": "SFINCS Soundview Navigator",
+  "description": "A high-performance geospatial dashboard for the Soundview SFINCS Dataset Team, enabling green infrastructure simulation and SOP-compliant data management.",
+  "requestFramePermissions": [
+    "geolocation"
+  ]
+}
