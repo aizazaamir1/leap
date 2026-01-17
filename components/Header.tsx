@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Droplets, Info } from 'lucide-react';
 
@@ -17,7 +16,7 @@ const Header: React.FC<HeaderProps> = ({ isRunning, isGreen }) => {
           <Droplets className="w-7 h-7 text-white" />
         </div>
         <div>
-          <h1 className="text-xl font-black tracking-tighter text-white uppercase leading-none">Bronx Water Hub</h1>
+          <h1 className="text-xl font-black tracking-tighter text-white uppercase leading-none">Soundview Flood Map</h1>
           <div className="flex items-center gap-3 mt-1.5">
             <span className={`text-[10px] font-black uppercase tracking-widest ${isGreen ? 'text-emerald-400' : 'text-orange-400'}`}>
               Interactive Drainage Map

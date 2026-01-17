@@ -10,6 +10,7 @@ export interface PlotData {
   floodRiskScore: number;
   beforeState: string;
   conversionType: string;
+  analysisPoints: string[];
   benefits: {
     runoff: number;
     cooling: number;

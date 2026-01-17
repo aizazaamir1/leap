@@ -1,8 +1,6 @@
-
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { PlotData } from '../types';
-import { Droplets, Sparkles, Loader2, ArrowDown, ChevronRight, Zap, EyeOff, TreePine } from 'lucide-react';
-import { getPlotConversionAnalysis } from '../services/geminiService';
+import { Droplets, Sparkles, Loader2, ArrowDown, ChevronRight, Zap, EyeOff, TreePine, Info } from 'lucide-react';
 
 interface AnalysisPanelProps {
   selectedPlot: PlotData | null;
@@ -11,38 +9,19 @@ interface AnalysisPanelProps {
 }
 
 const AnalysisPanel: React.FC<AnalysisPanelProps> = ({ selectedPlot, isGreenEnabled, setIsCorrDiffActive }) => {
-  const [aiAnalysis, setAiAnalysis] = useState<{points: string[]} | null>(null);
-  const [isAiLoading, setIsAiLoading] = useState(false);
   const [isProcessing, setIsProcessing] = useState(false);
-
-  useEffect(() => {
-    if (selectedPlot) {
-      setAiAnalysis(null);
-      setIsAiLoading(true);
-      getPlotConversionAnalysis(selectedPlot.address, selectedPlot.currentImperviousness)
-        .then(res => {
-          const points = res.split('\n')
-            .filter(line => line.trim().length > 5)
-            .map(line => line.replace(/^[\s*-]+/, '').trim())
-            .slice(0, 3);
-          setAiAnalysis({ points });
-          setIsAiLoading(false);
-        })
-        .catch(() => setIsAiLoading(false));
-    }
-  }, [selectedPlot]);
 
   const runAnalysis = () => {
     setIsProcessing(true);
     setIsCorrDiffActive(true);
-    setTimeout(() => setIsProcessing(false), 2000);
+    setTimeout(() => setIsProcessing(false), 1500);
   };
 
   if (!selectedPlot) return null;
 
   return (
-    <div className="p-8 space-y-8 flex flex-col h-full overflow-y-auto custom-scrollbar bg-transparent">
-      <header className="space-y-2">
+    <div className="p-8 space-y-8 flex flex-col overflow-y-auto flex-grow custom-scrollbar bg-transparent">
+      <header className="space-y-2 shrink-0">
         <div className="flex items-center gap-2">
           <span className={`text-[9px] font-black uppercase tracking-widest px-2 py-0.5 rounded border border-white/10 text-white/60`}>
             {selectedPlot.neighborhood}
@@ -51,8 +30,8 @@ const AnalysisPanel: React.FC<AnalysisPanelProps> = ({ selectedPlot, isGreenEnab
         <h2 className="text-2xl font-black text-white tracking-tighter leading-none">{selectedPlot.address}</h2>
       </header>
 
-      {/* Conversion Result focus */}
-      <section className={`p-6 rounded-2xl border transition-all duration-700 ${
+      {/* Strategy focus - Unlocked via Green Spaces */}
+      <section className={`p-6 rounded-2xl border transition-all duration-700 shrink-0 ${
         isGreenEnabled ? 'bg-emerald-500/10 border-emerald-500/30 shadow-[0_0_40px_rgba(16,185,129,0.05)]' : 'bg-white/5 border-white/10 shadow-none'
       }`}>
         <div className="flex items-center gap-3 mb-4">
@@ -81,7 +60,7 @@ const AnalysisPanel: React.FC<AnalysisPanelProps> = ({ selectedPlot, isGreenEnab
         )}
       </section>
 
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-2 gap-4 shrink-0">
         <div className="p-4 bg-white/5 rounded-2xl border border-white/10">
           <span className="text-[9px] font-black text-slate-500 uppercase block mb-1">Water Retention</span>
           <div className="flex items-center gap-2">
@@ -99,31 +78,34 @@ const AnalysisPanel: React.FC<AnalysisPanelProps> = ({ selectedPlot, isGreenEnab
         </div>
       </div>
 
-      <div className="bg-white/5 border border-white/10 rounded-2xl p-6 relative overflow-hidden">
+      {/* Hydrological Profile - Insights unlock with Green Spaces */}
+      <div className="bg-white/5 border border-white/10 rounded-2xl p-6 relative overflow-hidden shrink-0">
         <div className="flex items-center gap-3 mb-5">
           <Droplets className={`w-4 h-4 ${isGreenEnabled ? 'text-emerald-400' : 'text-orange-400'}`} />
           <h3 className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Hydrological Profile</h3>
         </div>
-        {isAiLoading ? (
-          <div className="flex justify-center py-4">
-            <Loader2 className={`w-6 h-6 animate-spin ${isGreenEnabled ? 'text-emerald-500' : 'text-orange-500'}`} />
-          </div>
-        ) : (
-          <ul className="space-y-3">
-            {aiAnalysis?.points.map((p, i) => (
+        
+        {isGreenEnabled ? (
+          <ul className="space-y-3 animate-in fade-in slide-in-from-bottom-2 duration-700">
+            {selectedPlot.analysisPoints.map((p, i) => (
               <li key={i} className="flex items-start gap-3">
-                <ChevronRight className={`w-3 h-3 mt-1 shrink-0 ${isGreenEnabled ? 'text-emerald-500' : 'text-orange-500'}`} />
+                <ChevronRight className="w-3 h-3 mt-1 shrink-0 text-emerald-500" />
                 <p className="text-[11px] leading-tight text-slate-300 font-bold">{p}</p>
               </li>
             ))}
           </ul>
+        ) : (
+          <div className="flex items-center gap-3 py-4 text-slate-600">
+            <Info className="w-4 h-4 shrink-0" />
+            <p className="text-[11px] font-bold italic">Scientific profiling requires "Green Space" activation.</p>
+          </div>
         )}
       </div>
 
       <button 
         onClick={runAnalysis}
         disabled={isProcessing}
-        className={`w-full py-4 rounded-xl text-[10px] font-black uppercase tracking-[0.2em] transition-all flex items-center justify-center gap-3 border ${
+        className={`w-full py-4 rounded-xl text-[10px] font-black uppercase tracking-[0.2em] transition-all flex items-center justify-center gap-3 border shrink-0 ${
           isProcessing 
             ? 'bg-slate-800/50 border-white/5 text-slate-500' 
             : isGreenEnabled 
@@ -134,6 +116,9 @@ const AnalysisPanel: React.FC<AnalysisPanelProps> = ({ selectedPlot, isGreenEnab
         {isProcessing ? <Loader2 className="w-4 h-4 animate-spin" /> : <Zap className="w-4 h-4" />}
         {isProcessing ? 'Processing Model...' : 'Simulate Flood Runoff'}
       </button>
+      
+      {/* Spacer to ensure last element is visible when scrolling */}
+      <div className="h-4 shrink-0" />
     </div>
   );
 };

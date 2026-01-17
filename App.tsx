@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import MapComponent from './components/MapComponent';
 import Sidebar from './components/Sidebar';
@@ -59,7 +58,7 @@ const App: React.FC = () => {
               </div>
             </div>
             <div className="space-y-4">
-              <h2 className="text-4xl font-black text-white uppercase tracking-tighter">Bronx Water Hub</h2>
+              <h2 className="text-4xl font-black text-white uppercase tracking-tighter">Soundview Flood Map</h2>
               <p className="text-sm text-slate-500 font-medium uppercase tracking-[0.3em]">Soundview • Bronx River Monitoring</p>
             </div>
             <button 
@@ -130,7 +129,7 @@ const App: React.FC = () => {
         </div>
 
         <div className={`absolute top-24 right-6 z-40 w-96 transition-all duration-500 ease-out transform ${selectedPlot ? 'translate-x-0 opacity-100' : 'translate-x-12 opacity-0 pointer-events-none'}`}>
-          <div className="glass-panel rounded-3xl overflow-hidden shadow-2xl">
+          <div className="glass-panel rounded-3xl overflow-hidden shadow-2xl flex flex-col max-h-[calc(100vh-10rem)]">
             <AnalysisPanel 
               selectedPlot={selectedPlot}
               isGreenEnabled={isGreenEnabled}

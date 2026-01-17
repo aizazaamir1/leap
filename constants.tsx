@@ -15,6 +15,11 @@ export const TARGET_PLOTS: PlotData[] = [
     floodRiskScore: 88,
     beforeState: 'Industrial Asphalt Parking',
     conversionType: 'Green Space & Bioswale',
+    analysisPoints: [
+      "Permeable soil captures 40% more runoff than current asphalt.",
+      "Reduces immediate pressure on Soundview Ave CSO outfall.",
+      "Naturally filters heavy metals before they reach Bronx River."
+    ],
     benefits: { runoff: 45, cooling: 3.2, carbon: 120 }
   },
   {
@@ -28,6 +33,11 @@ export const TARGET_PLOTS: PlotData[] = [
     floodRiskScore: 82,
     beforeState: 'Unused paved lot',
     conversionType: 'Green Community Space',
+    analysisPoints: [
+      "Deep root systems stabilize soil against heavy storm surges.",
+      "Local depression storage prevents street ponding on Bronx Ave.",
+      "Lowers surface temperature by 4°C during extreme heat events."
+    ],
     benefits: { runoff: 55, cooling: 3.8, carbon: 140 }
   },
   {
@@ -41,6 +51,11 @@ export const TARGET_PLOTS: PlotData[] = [
     floodRiskScore: 94,
     beforeState: 'At-grade service road',
     conversionType: 'Elevated Highway Segment',
+    analysisPoints: [
+      "Subsurface detention slows highway runoff entering local sewers.",
+      "Raised geometry prevents vehicle stranding in low-point pockets.",
+      "Directs peak flows to specialized heavy-duty pump stations."
+    ],
     benefits: { runoff: 95, cooling: 1.5, carbon: 50 }
   },
   {
@@ -54,6 +69,11 @@ export const TARGET_PLOTS: PlotData[] = [
     floodRiskScore: 91,
     beforeState: 'Exposed surface lanes',
     conversionType: 'Subsurface Drainage + Pumps',
+    analysisPoints: [
+      "New drainage culverts handle 3.66 in/hr precipitation intensity.",
+      "Prevents hazardous ponding at critical freight transport junctions.",
+      "Backup pump arrays ensure operation during grid failure events."
+    ],
     benefits: { runoff: 82, cooling: 2.1, carbon: 45 }
   },
   {
@@ -67,6 +87,11 @@ export const TARGET_PLOTS: PlotData[] = [
     floodRiskScore: 89,
     beforeState: 'Chronic flood corridor',
     conversionType: 'Subsurface Detention Vaults',
+    analysisPoints: [
+      "Stores 10,000 cubic ft of water during tidal lock events.",
+      "Prevents backflow from Bronx River into neighborhood sewers.",
+      "Modular design integrates with existing expressway utilities."
+    ],
     benefits: { runoff: 80, cooling: 1.2, carbon: 30 }
   },
   {
@@ -80,6 +105,11 @@ export const TARGET_PLOTS: PlotData[] = [
     floodRiskScore: 86,
     beforeState: 'Asphalt roadside embankment',
     conversionType: 'Floodable Park Design',
+    analysisPoints: [
+      "Tiered landscape design safely holds excess creek overflow.",
+      "Increases neighborhood green canopy by 15% in sector 4.",
+      "Native wetland grasses provide high-efficiency water uptake."
+    ],
     benefits: { runoff: 70, cooling: 4.5, carbon: 210 }
   },
   {
@@ -93,6 +123,11 @@ export const TARGET_PLOTS: PlotData[] = [
     floodRiskScore: 95,
     beforeState: 'Concrete shoreline area',
     conversionType: 'Floodable Bio-retention',
+    analysisPoints: [
+      "Dissipates energy from wave surge before it reaches inland.",
+      "Acts as a buffer for sea-level rise predicted for 2080.",
+      "Restores local hydro-connectivity with the Bronx River estuary."
+    ],
     benefits: { runoff: 62, cooling: 4.1, carbon: 520 }
   }
 ];
